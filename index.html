@@ -1,0 +1,46 @@
+<head>
+  <meta charset="utf-8">
+  <title>Ma page</title>
+  <link href="/src/index.css" rel="stylesheet">
+</head>
+
+<canvas
+  id="cobe"
+  style="width: 500px; height: 500px"
+  width="1000"
+  height="1000"
+></canvas>
+
+<script type="module">
+  import createGlobe from 'https://cdn.skypack.dev/cobe'
+
+  let phi = 3.5;
+  let canvas = document.getElementById("cobe");
+  
+  const globe = createGlobe(canvas, {
+    devicePixelRatio: 1.5, // watch out
+    width: 300 * 2,
+    height: 300 * 2,
+    phi: 50,
+    theta: 0.5,
+    dark: 1,
+    diffuse: 4,
+    mapSamples: 16000,
+    mapBrightness: 12,
+    baseColor: [0.3, 0.3, 0.3],
+    markerColor: [0.133, 0.184, 0.357],
+    glowColor: [0.133, 0.184, 0.357],
+    markers: [
+      // longitude latitude
+      /*{ location: [37.7595, -122.4367], size: 0.03 },
+      { location: [40.7128, -74.006], size: 0.1 },*/
+      { location: [48.8566, 2.3522], size: 0.1 }
+    ],
+    onRender: (state) => {
+      // Called on every animation frame.
+      // `state` will be an empty object, return updated params.
+      state.phi = phi;
+      phi += 0.001;
+    },
+  })
+</script>
